@@ -15,22 +15,25 @@
                 <h1 class="text-center text-white">Sala Acquisti</h1>
             </div>
             <br />
-            <asp:Repeater ID="Repeater1" runat="server">
-                <ItemTemplate>
-                    <div class="row">
-                        <div class=" col-md-3 " >
-                            <div class="p-2">
-                                <asp:Image ID="Image1" runat="server" />
+            <div class="row">
+                <asp:Repeater ID="Repeater1" runat="server" ItemType="U1_W3_E4.Item">
+                    <ItemTemplate>                
+                        <div class=" col-3 " >
+                            <div class="card">
+                                <div class="p-2">
+                                    <asp:Image ID="Image1" runat="server" />
+                                </div>
+                                <div>
+                                    <asp:Label ID="Name" runat="server" Text=""></asp:Label>
+                                    <p><%# Item. %></p>
+                                    <br />
+                                    <asp:LinkButton ID="LinkButton1" runat="server">Vuoi Saperne Di Più</asp:LinkButton>
+                                </div>
                             </div>
-                            <div>
-                                <asp:Label ID="Descrizione" runat="server" Text=""></asp:Label>
-                                <br />
-                                <asp:Button ID="Dettagli" runat="server" Text="Scopri Di Più" OnClick="Dettagli_Click" />
-                            </div>
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
+                        </div>                  
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
         </div>
     </form>
 </body>

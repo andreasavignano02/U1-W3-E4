@@ -12,34 +12,46 @@ namespace U1_W3_E4
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                while (Item.Items.Count < 0)
-                {
-                    Item.Prezzo = 
-                }
+            if(!IsPostBack) 
+            { 
+                List<Item> list = new List<Item>();
+                list = Item.GetItem();
 
+                Repeater1.DataSource = list;
+                Repeater1.DataBind();
             }
-            catch
-            {
-                Errore.Text = "Hai Sbagliato qualcosa"; //come andare a prendere il messaggio di errore
-            }
-
         }
 
-        protected void Dettagli_Click(object sender, EventArgs e)
-        {
-
-        }
-        public static class Item 
+        
+        public class Item 
         { 
-        public static string Name;
+            public int id { get; set; }
 
-        public static string Description;
+            public string Name { get; set; }
 
-        public static double Prezzo;
+            public string Img { get; set; }
 
-        public static List<Item> Items;
+            public string Description { get; set; }
+
+            public double Prezzo { get; set; }
+
+            public static List<Item> Items = new List<Item>();
+
+            public static List<Item> GetItem() 
+            { 
+               List<Item> list = new List<Item>();
+
+               Item I1 = new Item { id= 1, Img= "~/img_pokemon/AstriLucenti.jpg", Name = "Astri Lucenti", Description="Box da 36 bustine di Astri Lucenti dove puoi trovare arceus v alternative art", Prezzo = 170 };
+               Item I2 = new Item { id = 2, Img = "~/img_pokemon/LucentezzaSiderale.webp", Name = "Lucentezza Siderale", Description = "Box da 36 bustine di Lucentezza Siderale dove puoi trovare sia Palkia che Dialga v alternative art", Prezzo = 180 };
+               Item I3 = new Item { id = 3, Img = "~/img_pokemon/OriginePerduta.webp", Name = "Origine Perduta", Description = "Box da 36 bustine di Origine Perduta dove puoi trovare Giratina v alternative art", Prezzo = 190 };
+               Item I4 = new Item { id = 4, Img = "~/img_pokemon/TempestaArgentata.jpg", Name = "Tempesta Argentata", Description = "Box da 36 bustine di Tempesta Argentata dove puoi trovare lugia v alternative art", Prezzo = 200 };
+
+               list.Add(I1);
+               list.Add(I2);
+               list.Add(I3);
+               list.Add(I4);
+               return list;
+            }
         }
     }
 }
